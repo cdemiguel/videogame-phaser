@@ -22,26 +22,21 @@ GamePlayManager = {
         // añadimos el caballo de mar
         // ademas guardamos la instancia horse y que este dentro del objeto gameplaymanager
         //podemos guardar instancia de nuestro sprite
-        var horse = new this.Horse(1);
-        console.log(horse.frame)
-        horse = game.add.sprite(0, 0, 'horse');
-        horse.x = game.width/2;
-        horse.y = game.height/2;
-
-
-
-        // this.horse = game.add.sprite(0, 0, 'horse');
-        // this.horse.frame = 0;
-        // this.horse.x = game.width/2;
-        // this.horse.y = game.height/2;
-
+        this.horse = game.add.sprite(0, 0, 'horse');
+        this.horse.frame = 0;
+        this.horse.x = game.width/2;
+        this.horse.y = game.height/2;
+        // centrar el anchor del sprite en el centro// se añade un ancla en el centro del sprite
+        // como un punto, y todas las acciones del sprite se hacen a partir de ahi
+        this.horse.anchor.setTo(0,5);
+        // // podemos escalar tb 
+        // this.horse.scale.setTo(1,2)
+        // // podemos setear el alpha
+        // this.horse.alpha = 0; // invisible // 1 visible
     },
     // frame a frame llama al metodo
     update: function() {
 
-    },
-    Horse: function (frame){
-        this.frame = frame
     }
 }
 
