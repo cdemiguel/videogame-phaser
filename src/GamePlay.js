@@ -1,3 +1,5 @@
+var AMOUNT_DIAMONDS = 30;
+
 GamePlayManager = {
   init: function() {
     // el juego escale en panalla
@@ -15,6 +17,9 @@ GamePlayManager = {
     // utilizar sprites se carga primero (utilizando diciendo a phaser que es un sprite)
     // 84 la mitad en px de las dos partes, alto, 2 img en un sprite
     game.load.spritesheet("horse", "../assets/images/horse.png", 84, 156, 2)
+
+    game.load.spritesheet("diamonds", "../assets/images/diamonds.png", 81, 84, 4)
+
   },
   // utiliza recursos
   create: function() {
@@ -39,6 +44,29 @@ GamePlayManager = {
 
     // creamos un boton de inicio
     game.input.onDown.add(this.onTap, this)
+
+    // guardamos en un array cada uno de los diamantes
+    this.diamonds = [];
+    for(var i=0; i < AMOUNT_DIAMONDS; i++) {
+        // cargamos diamante
+        var diamond = game.add.sprite(100, 100, "diamonds")
+        // añadimos aleatoriamente cada 1 de los sprites (bolitas) // random
+        diamond.frame = game.rnd.integerInRange(0,3);
+        // añadimos una escala random
+        diamond.scale.setTo(0.30 + game.rnd.frac())
+        // añadimos el anchor en el centro
+        diamond.anchor.setTo(0.5)
+        // lo posicionamos entre esas dos posiciones aleatoriamente
+        diamond.x = game.rnd.integerInRange(50, 1050)
+        diamond.y = game.rnd.integerInRange(50, 600)
+
+
+        this.diamonds.push(diamond)
+        // this.diamonds[i] = diamond // otra forma de pushear los diamantes en el array
+        // los diamantes se sobreponen, debemos calcular con wque no pase
+        
+    }
+    console.log(this.diamonds)
   },
   onTap: function() {
     this.flagFirstMouseDown = true;
